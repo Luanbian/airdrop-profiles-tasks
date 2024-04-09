@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { Container, CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import Home from './presentation/pages/home';
 import { ThemeSettings } from './presentation/theme/Theme';
 
@@ -31,7 +31,9 @@ function ProviderModernize({ children }: ProviderModernizeProps) {
 function App() {
     return (
         <ProviderModernize>
-            <Home />
+            <Container>
+                <Home />
+            </Container>
         </ProviderModernize>
     );
 }
