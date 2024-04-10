@@ -14,6 +14,13 @@ export default function Home() {
         ['John Doe', 'John.doe@gmail', '123456789', '1234 Main St', 'Details'],
         ['John Doe', 'John.doe@gmail', '123456789', '1234 Main St', 'Details'],
     ];
+    const subtitles = ['Taks', 'Status', 'Due Date', 'Points'];
+    const details = [
+        ['Discord', 'In Progress', '12/12/2021', '5'],
+        ['Discord', 'In Progress', '12/12/2021', '5'],
+        ['Discord', 'In Progress', '12/12/2021', '5'],
+        ['Discord', 'In Progress', '12/12/2021', '5'],
+    ];
 
     return (
         <div>
@@ -21,7 +28,7 @@ export default function Home() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
             </Typography>
             <SearchComponent onSubmit={handleSearch} />
-            <Table titles={titles} rows={rows} />
+            <Table titles={titles} rows={rows} subtitles={subtitles} details={details} />
         </div>
     );
 }

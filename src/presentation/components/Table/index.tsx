@@ -5,9 +5,11 @@ import { useState } from 'react';
 interface TableProps {
     titles: string[];
     rows: string[][];
+    subtitles: string[];
+    details: string[][];
 }
 
-export default function Table({ titles, rows }: TableProps) {
+export default function Table({ titles, rows, subtitles, details }: TableProps) {
     const [open, setOpen] = useState<number | null>(null);
 
     return (
@@ -40,10 +42,33 @@ export default function Table({ titles, rows }: TableProps) {
                                     </TableCell>
                                 ))}
                             </TableRow>
-                            <TableRow key={rowIndex}>
-                                <Collapse in={open === rowIndex} timeout='auto' unmountOnExit>
-                                    <TableCell colSpan={titles.length}>{'aaaaa'}</TableCell>
-                                </Collapse>
+                            <TableRow>
+                                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                                    <Collapse in={open === rowIndex} timeout='auto' unmountOnExit>
+                                        <MuiTable size='small' aria-label='purchases'>
+                                            <TableHead>
+                                                <TableRow>
+                                                    {subtitles.map((subtitle, index) => (
+                                                        <TableCell key={index}>
+                                                            {subtitle}
+                                                        </TableCell>
+                                                    ))}
+                                                </TableRow>
+                                            </TableHead>
+                                            <TableBody>
+                                                {details.map((detailRow, detailRowIndex) => (
+                                                    <TableRow key={detailRowIndex}>
+                                                        {detailRow.map((detail, detailIndex) => (
+                                                            <TableCell key={detailIndex}>
+                                                                {detail}
+                                                            </TableCell>
+                                                        ))}
+                                                    </TableRow>
+                                                ))}
+                                            </TableBody>
+                                        </MuiTable>
+                                    </Collapse>
+                                </TableCell>
                             </TableRow>
                         </>
                     ))}
