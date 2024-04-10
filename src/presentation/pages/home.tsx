@@ -3,6 +3,21 @@ import SearchComponent from '../components/SearchBar';
 import styled from '../styles/home.module.css';
 import Table from '../components/Table';
 
+export interface Rows {
+    wallet: string;
+    username: string;
+    tasks: string;
+    points: string;
+    accounts: string;
+    lastTaskUpdated: string;
+}
+export interface Details {
+    task: string;
+    point: string;
+    when: string;
+    transaction: string;
+}
+
 export default function Home() {
     const handleSearch = (value: string) => {
         console.log(value);
@@ -12,18 +27,68 @@ export default function Home() {
     };
 
     const titles = ['Wallet', 'Username', 'Tasks', 'Points', 'Accounts', 'Last Task updated', ''];
-    const rows = [
-        ['0x12345', 'John Doe', '7 Tasks', '12 M', '3', '2024-03-22 12:30:00', 'Details'],
-        ['0x12345', 'John Doe', '10 Tasks', '1 M', '2', '2024-02-19 13:46:00', 'Details'],
-        ['0x12345', 'John Doe', '13 Tasks', '512 K', '1', '2024-01-15 09:22:00', 'Details'],
-        ['0x12345', 'John Doe', '5 Tasks', '7 M', '2', '2024-02-10 12:00:00', 'Details'],
-    ];
     const subtitles = ['Task', 'Point', 'When', 'Transaction'];
+
+    const rows = [
+        {
+            wallet: '0x12345',
+            username: 'John Doe',
+            tasks: '7 Tasks',
+            points: '12 M',
+            accounts: '3',
+            lastTaskUpdated: '2024-03-22 12:30:00',
+        },
+        {
+            wallet: '0x12345',
+            username: 'John Doe',
+            tasks: '10 Tasks',
+            points: '1 M',
+            accounts: '2',
+            lastTaskUpdated: '2024-02-19 13:46:00',
+        },
+        {
+            wallet: '0x12345',
+            username: 'John Doe',
+            tasks: '13 Tasks',
+            points: '512 K',
+            accounts: '1',
+            lastTaskUpdated: '2024-01-15 09:22:00',
+        },
+        {
+            wallet: '0x12345',
+            username: 'John Doe',
+            tasks: '5 Tasks',
+            points: '7 M',
+            accounts: '2',
+            lastTaskUpdated: '2024-02-10 12:00:00',
+        },
+    ];
+
     const details = [
-        ['Calculated VAM', '100', '2024-03-22 12:18:00', '0x1234567890'],
-        ['Calculated VAM', '100', '2024-03-22 12:18:00', '0x1234567890'],
-        ['Calculated VAM', '100', '2024-03-22 12:18:00', '0x1234567890'],
-        ['Calculated VAM', '100', '2024-03-22 12:18:00', '0x1234567890'],
+        {
+            task: 'Calculated VAM',
+            point: '100',
+            when: '2024-03-22 12:18:00',
+            transaction: '0x1234567890',
+        },
+        {
+            task: 'Calculated VAM',
+            point: '100',
+            when: '2024-03-22 12:18:00',
+            transaction: '0x1234567890',
+        },
+        {
+            task: 'Calculated VAM',
+            point: '100',
+            when: '2024-03-22 12:18:00',
+            transaction: '0x1234567890',
+        },
+        {
+            task: 'Calculated VAM',
+            point: '100',
+            when: '2024-03-22 12:18:00',
+            transaction: '0x1234567890',
+        },
     ];
 
     return (

@@ -10,12 +10,13 @@ import {
 } from '@mui/material';
 import MuiTable from '@mui/material/Table';
 import { useState } from 'react';
+import { Details, Rows } from '../../pages/home';
 
 interface TableProps {
     titles: string[];
-    rows: string[][];
+    rows: Rows[];
     subtitles: string[];
-    details: string[][];
+    details: Details[];
 }
 
 export default function Table({ titles, rows, subtitles, details }: TableProps) {
@@ -37,21 +38,25 @@ export default function Table({ titles, rows, subtitles, details }: TableProps) 
                     {rows.map((row, rowIndex) => (
                         <>
                             <TableRow key={rowIndex}>
-                                {row.map((cell, cellIndex) => (
-                                    <TableCell key={cellIndex}>
-                                        {cellIndex === row.length - 1 ? (
-                                            <Button
-                                                onClick={() =>
-                                                    setOpen(open === rowIndex ? null : rowIndex)
-                                                }
-                                            >
-                                                {cell}
-                                            </Button>
-                                        ) : (
-                                            cell
-                                        )}
+                                {Object.values(row).map((value, index) => (
+                                    <TableCell key={index}>
+                                        <Typography variant='body1'>{value}</Typography>
                                     </TableCell>
                                 ))}
+                                <TableCell>
+                                    <Button
+                                        size='small'
+                                        onClick={() => {
+                                            if (open === rowIndex) {
+                                                setOpen(null);
+                                            } else {
+                                                setOpen(rowIndex);
+                                            }
+                                        }}
+                                    >
+                                        {open === rowIndex ? 'Close' : 'Details'}
+                                    </Button>
+                                </TableCell>
                             </TableRow>
                             <TableRow>
                                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -76,10 +81,12 @@ export default function Table({ titles, rows, subtitles, details }: TableProps) 
                                                 <TableBody>
                                                     {details.map((detailRow, detailRowIndex) => (
                                                         <TableRow key={detailRowIndex}>
-                                                            {detailRow.map(
-                                                                (detail, detailIndex) => (
+                                                            {Object.values(detailRow).map(
+                                                                (detailValue, detailIndex) => (
                                                                     <TableCell key={detailIndex}>
-                                                                        {detail}
+                                                                        <Typography variant='body1'>
+                                                                            {detailValue}
+                                                                        </Typography>
                                                                     </TableCell>
                                                                 ),
                                                             )}
