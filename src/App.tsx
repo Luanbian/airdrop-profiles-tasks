@@ -1,6 +1,9 @@
 import { Container, CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import Home from './presentation/pages/home';
 import { ThemeSettings } from './presentation/theme/Theme';
+import { Provider } from 'react-redux';
+import store, { persistor } from './services/feature/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 interface ProviderModernizeProps {
     children: React.ReactNode;
@@ -30,11 +33,15 @@ function ProviderModernize({ children }: ProviderModernizeProps) {
 
 function App() {
     return (
-        <ProviderModernize>
-            <Container>
-                <Home />
-            </Container>
-        </ProviderModernize>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <ProviderModernize>
+                    <Container>
+                        <Home />
+                    </Container>
+                </ProviderModernize>
+            </PersistGate>
+        </Provider>
     );
 }
 
