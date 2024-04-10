@@ -2,6 +2,8 @@ import { InputBase, alpha, styled } from '@mui/material';
 
 export const Search = styled('div')(({ theme }) => ({
     position: 'relative',
+    display: 'flex',
+    gap: '1%',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
     '&:hover': {
@@ -33,8 +35,12 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
+        borderRadius: theme.shape.borderRadius,
         [theme.breakpoints.up('md')]: {
             width: '20ch',
         },
+    },
+    '& .MuiInputBase-input:focus': {
+        border: '1px solid #763EBD',
     },
 }));

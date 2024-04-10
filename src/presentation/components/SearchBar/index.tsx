@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
-import { Search, SearchIconWrapper, StyledInputBase } from './search.styled';
+import { Search, SearchIconWrapper, StyledInputBase } from './index.styled';
 
 interface SearchBarProps {
     onSubmit: (value: string) => void;
@@ -34,7 +34,6 @@ export default function SearchComponent({ onSubmit, onDebouncedChange }: SearchB
                 value={inputValue}
                 onChange={handleInputChange}
                 placeholder='Search…'
-                inputProps={{ 'aria-label': 'search' }}
             />
             <Button onClick={handleSubmit}>Search</Button>
         </Search>

@@ -1,4 +1,13 @@
-import { Button, Collapse, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import {
+    Button,
+    Card,
+    Collapse,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Typography,
+} from '@mui/material';
 import MuiTable from '@mui/material/Table';
 import { useState } from 'react';
 
@@ -18,7 +27,9 @@ export default function Table({ titles, rows, subtitles, details }: TableProps) 
                 <TableHead>
                     <TableRow>
                         {titles.map((title, index) => (
-                            <TableCell key={index}>{title}</TableCell>
+                            <TableCell key={index}>
+                                <Typography variant='body1'>{title}</Typography>
+                            </TableCell>
                         ))}
                     </TableRow>
                 </TableHead>
@@ -45,28 +56,38 @@ export default function Table({ titles, rows, subtitles, details }: TableProps) 
                             <TableRow>
                                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
                                     <Collapse in={open === rowIndex} timeout='auto' unmountOnExit>
-                                        <MuiTable size='small' aria-label='purchases'>
-                                            <TableHead>
-                                                <TableRow>
-                                                    {subtitles.map((subtitle, index) => (
-                                                        <TableCell key={index}>
-                                                            {subtitle}
-                                                        </TableCell>
-                                                    ))}
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                {details.map((detailRow, detailRowIndex) => (
-                                                    <TableRow key={detailRowIndex}>
-                                                        {detailRow.map((detail, detailIndex) => (
-                                                            <TableCell key={detailIndex}>
-                                                                {detail}
+                                        <Card
+                                            elevation={24}
+                                            square={false}
+                                            sx={{ border: '1px solid #b9b9b9' }}
+                                        >
+                                            <MuiTable size='small' aria-label='purchases'>
+                                                <TableHead>
+                                                    <TableRow>
+                                                        {subtitles.map((subtitle, index) => (
+                                                            <TableCell key={index}>
+                                                                <Typography variant='body1'>
+                                                                    {subtitle}
+                                                                </Typography>
                                                             </TableCell>
                                                         ))}
                                                     </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </MuiTable>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {details.map((detailRow, detailRowIndex) => (
+                                                        <TableRow key={detailRowIndex}>
+                                                            {detailRow.map(
+                                                                (detail, detailIndex) => (
+                                                                    <TableCell key={detailIndex}>
+                                                                        {detail}
+                                                                    </TableCell>
+                                                                ),
+                                                            )}
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </MuiTable>
+                                        </Card>
                                     </Collapse>
                                 </TableCell>
                             </TableRow>
