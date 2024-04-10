@@ -1,52 +1,21 @@
-import { Button, InputBase, alpha, styled } from '@mui/material';
+import { Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { useState } from 'react';
-
-const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(3),
-        width: 'auto',
-    },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-        padding: theme.spacing(1, 1, 1, 0),
-        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '20ch',
-        },
-    },
-}));
+import { useEffect, useState } from 'react';
+import { useDebounce } from 'use-debounce';
+import { Search, SearchIconWrapper, StyledInputBase } from './search.styled';
 
 interface SearchBarProps {
     onSubmit: (value: string) => void;
+    onDebouncedChange: (value: string) => void;
 }
 
-export default function SearchComponent({ onSubmit }: SearchBarProps) {
+export default function SearchComponent({ onSubmit, onDebouncedChange }: SearchBarProps) {
     const [inputValue, setInputValue] = useState('');
+    const [debouncedValue] = useDebounce(inputValue, 500);
+
+    useEffect(() => {
+        onDebouncedChange(debouncedValue);
+    }, [debouncedValue, onDebouncedChange]);
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
