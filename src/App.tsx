@@ -1,30 +1,17 @@
-import { Container, CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import { Container, CssBaseline, ThemeProvider } from '@mui/material';
 import Home from './presentation/pages/home';
-import { ThemeSettings } from './presentation/theme/Theme';
 import { Provider } from 'react-redux';
 import store, { persistor } from './services/feature/store';
 import { PersistGate } from 'redux-persist/integration/react';
+import ThemeConfig from './presentation/theme/theme.config';
 
 interface ProviderModernizeProps {
     children: React.ReactNode;
 }
 
 function ProviderModernize({ children }: ProviderModernizeProps) {
-    const theme = ThemeSettings();
-
     return (
-        <ThemeProvider
-            theme={createTheme({
-                ...theme,
-                direction: theme.direction,
-                palette: theme.palette,
-                typography: theme.typography,
-                shadows: theme.shadows,
-                shape: {
-                    borderRadius: theme.shape.borderRadius,
-                },
-            })}
-        >
+        <ThemeProvider theme={ThemeConfig()}>
             <CssBaseline />
             {children}
         </ThemeProvider>

@@ -45,7 +45,7 @@ interface SearchBarProps {
     onSubmit: (value: string) => void;
 }
 
-export default function SearchBar({ onSubmit }: SearchBarProps) {
+export default function SearchComponent({ onSubmit }: SearchBarProps) {
     const [inputValue, setInputValue] = useState('');
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
