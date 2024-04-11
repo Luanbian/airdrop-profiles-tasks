@@ -27,14 +27,16 @@ export default function SearchComponent({ onSubmit, onDebouncedChange }: SearchB
 
     return (
         <Search>
-            <SearchIconWrapper>
-                <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-                value={inputValue}
-                onChange={handleInputChange}
-                placeholder='Search…'
-            />
+            <div>
+                <SearchIconWrapper>
+                    <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    placeholder='Search…'
+                />
+            </div>
             <Button onClick={handleSubmit}>Search</Button>
         </Search>
     );

@@ -93,10 +93,12 @@ export default function Home() {
 
     return (
         <div className={styled.main}>
-            <Typography variant='h2' sx={{ marginTop: '3%' }}>
-                Search for a wallet or username
-            </Typography>
-            <SearchComponent onSubmit={handleSearch} onDebouncedChange={handleDebounceChange} />
+            <div className={styled.search}>
+                <Typography variant='h2' sx={{ marginTop: '3%' }}>
+                    Search for a wallet or username
+                </Typography>
+                <SearchComponent onSubmit={handleSearch} onDebouncedChange={handleDebounceChange} />
+            </div>
             <Card elevation={24} square={false}>
                 <Table titles={titles} rows={rows} subtitles={subtitles} details={details} />
             </Card>
