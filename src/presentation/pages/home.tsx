@@ -65,8 +65,8 @@ export default function Home() {
     const handleDebounceChange = (value: string) => {
         console.log(value);
     };
-    const navigateToDetails = () => {
-        navigate('/123');
+    const navigateToDetails = (id: string) => {
+        navigate(`/${id}`);
     };
 
     return (
@@ -78,7 +78,12 @@ export default function Home() {
                 <SearchComponent onSubmit={handleSearch} onDebouncedChange={handleDebounceChange} />
             </div>
             <Card elevation={24} square={false}>
-                <Table titles={titles} rows={rows} BtnTitle='Details' onClick={navigateToDetails} />
+                <Table
+                    titles={titles}
+                    rows={rows}
+                    BtnTitle='Details'
+                    onClick={(row) => navigateToDetails(row.wallet)}
+                />
             </Card>
         </div>
     );

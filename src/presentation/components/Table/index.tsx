@@ -6,7 +6,7 @@ interface TableProps {
     titles: string[];
     rows: Rows[];
     BtnTitle?: string;
-    onClick?: () => void;
+    onClick?: (row: Rows) => void;
 }
 
 export default function Table({ titles, rows, BtnTitle, onClick }: TableProps) {
@@ -30,9 +30,9 @@ export default function Table({ titles, rows, BtnTitle, onClick }: TableProps) {
                                     <Typography variant='body1'>{value}</Typography>
                                 </TableCell>
                             ))}
-                            {BtnTitle && (
+                            {BtnTitle && onClick && (
                                 <TableCell>
-                                    <Button onClick={onClick}>{BtnTitle}</Button>
+                                    <Button onClick={() => onClick(row)}>{BtnTitle}</Button>
                                 </TableCell>
                             )}
                         </TableRow>
