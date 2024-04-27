@@ -2,6 +2,10 @@ import { Card, Typography } from '@mui/material';
 import SearchComponent from '../components/SearchBar';
 import styled from '../styles/home.module.css';
 import Table from '../components/Table';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { AppState } from '../../services/feature/store';
+import { actions } from '../../services/feature/profiles/slice';
 
 export interface Rows {
     wallet: string;
@@ -19,12 +23,7 @@ export interface Details {
 }
 
 export default function Home() {
-    const handleSearch = (value: string) => {
-        console.log(value);
-    };
-    const handleDebounceChange = (value: string) => {
-        console.log(value);
-    };
+    const dispatch = useDispatch();
 
     const titles = ['Wallet', 'Username', 'Tasks', 'Points', 'Accounts', 'Last Task updated', ''];
     const subtitles = ['Task', 'Point', 'When', 'Transaction'];
@@ -90,6 +89,23 @@ export default function Home() {
             transaction: '0x1234567890',
         },
     ];
+
+    const { profile, loading, error } = useSelector((state: AppState) => state);
+
+    useEffect(() => {
+        const fetchProfile = () => {
+            dispatch(actions.getProfileRequest({ id: '65e94d14bb537ed15737e6d3', token: '12345' }));
+        };
+        fetchProfile();
+    }, []);
+
+    const handleSearch = (value: string) => {
+        console.log(value);
+        console.log(profile);
+    };
+    const handleDebounceChange = (value: string) => {
+        console.log(value);
+    };
 
     return (
         <div className={styled.main}>

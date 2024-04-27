@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import assetReducer from './profiles/slice';
+import profileReducer from './profiles/slice';
 import watchAsset from './profiles/saga';
 import { PERSIST_KEY, PERSIST_VERSION } from '../../utils/constants/store';
 
@@ -15,7 +15,7 @@ const persistedReducer = persistReducer(
         version: PERSIST_VERSION,
         storage,
     },
-    assetReducer,
+    profileReducer,
 );
 
 const store = configureStore({
