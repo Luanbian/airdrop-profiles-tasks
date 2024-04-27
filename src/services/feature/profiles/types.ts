@@ -1,3 +1,8 @@
 export interface Profile {
-    _id: string;
+    code: string;
+    message: string;
+    transaction: string;
+    data: {
+        _id: string;
+    };
 }

@@ -21,7 +21,7 @@ export default function Details() {
     return (
         <>
             <h1>Details</h1>
-            <p>{JSON.stringify(profile)}</p>
+            <p>{profile.data._id}</p>
         </>
     );
 }
