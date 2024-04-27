@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { AppState } from '../../services/feature/store';
 import { actions } from '../../services/feature/profiles/slice';
+import { useNavigate } from 'react-router-dom';
 
 export interface Rows {
     wallet: string;
@@ -23,10 +24,10 @@ export interface Details {
 }
 
 export default function Home() {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const titles = ['Wallet', 'Username', 'Tasks', 'Points', 'Accounts', 'Last Task updated', ''];
-    const subtitles = ['Task', 'Point', 'When', 'Transaction'];
 
     const rows = [
         {
@@ -63,33 +64,6 @@ export default function Home() {
         },
     ];
 
-    const details = [
-        {
-            task: 'Calculated VAM',
-            point: '100',
-            when: '2024-03-22 12:18:00',
-            transaction: '0x1234567890',
-        },
-        {
-            task: 'Calculated VAM',
-            point: '100',
-            when: '2024-03-22 12:18:00',
-            transaction: '0x1234567890',
-        },
-        {
-            task: 'Calculated VAM',
-            point: '100',
-            when: '2024-03-22 12:18:00',
-            transaction: '0x1234567890',
-        },
-        {
-            task: 'Calculated VAM',
-            point: '100',
-            when: '2024-03-22 12:18:00',
-            transaction: '0x1234567890',
-        },
-    ];
-
     const { profile, loading, error } = useSelector((state: AppState) => state);
 
     useEffect(() => {
@@ -106,6 +80,9 @@ export default function Home() {
     const handleDebounceChange = (value: string) => {
         console.log(value);
     };
+    const navigateToDetails = () => {
+        navigate('/123');
+    };
 
     return (
         <div className={styled.main}>
@@ -116,7 +93,7 @@ export default function Home() {
                 <SearchComponent onSubmit={handleSearch} onDebouncedChange={handleDebounceChange} />
             </div>
             <Card elevation={24} square={false}>
-                <Table titles={titles} rows={rows} subtitles={subtitles} details={details} />
+                <Table titles={titles} rows={rows} BtnTitle='Details' onClick={navigateToDetails} />
             </Card>
         </div>
     );
