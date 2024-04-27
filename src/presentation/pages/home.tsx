@@ -2,10 +2,6 @@ import { Card, Typography } from '@mui/material';
 import SearchComponent from '../components/SearchBar';
 import styled from '../styles/home.module.css';
 import Table from '../components/Table';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { AppState } from '../../services/feature/store';
-import { actions } from '../../services/feature/profiles/slice';
 import { useNavigate } from 'react-router-dom';
 
 export interface Rows {
@@ -25,7 +21,6 @@ export interface Details {
 
 export default function Home() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     const titles = ['Wallet', 'Username', 'Tasks', 'Points', 'Accounts', 'Last Task updated', ''];
 
@@ -64,18 +59,8 @@ export default function Home() {
         },
     ];
 
-    const { profile, loading, error } = useSelector((state: AppState) => state);
-
-    useEffect(() => {
-        const fetchProfile = () => {
-            dispatch(actions.getProfileRequest({ id: '65e94d14bb537ed15737e6d3', token: '12345' }));
-        };
-        fetchProfile();
-    }, []);
-
     const handleSearch = (value: string) => {
         console.log(value);
-        console.log(profile);
     };
     const handleDebounceChange = (value: string) => {
         console.log(value);
