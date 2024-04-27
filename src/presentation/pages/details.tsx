@@ -3,6 +3,7 @@ import { AppState } from '../../services/feature/store';
 import { useEffect } from 'react';
 import { actions } from '../../services/feature/profiles/slice';
 import { useParams } from 'react-router-dom';
+import getProfiles from '../../data/usecases/get.profiles';
 
 export default function Details() {
     const dispatch = useDispatch();
@@ -28,6 +29,7 @@ export default function Details() {
             <h1>Details</h1>
             <p>{profile.data._id}</p>
             <p>{id}</p>
+            <button onClick={getProfiles}>teste</button>
         </>
     );
 }
